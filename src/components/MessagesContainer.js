@@ -8,16 +8,10 @@ const MessagesContainer = props => {
     return <Message key={message.timestamp} message={message}></Message>;
   });
 
-  return (
-    <div className="messages-container">
-      <h3>Message</h3>
-      {messagesList}
-    </div>
-  );
+  return <div className="messages-container">{messagesList}</div>;
 };
 
 const mapStateToProps = state => {
-  console.log('MY STATE', state);
   return { messages: state.messages };
 };
 

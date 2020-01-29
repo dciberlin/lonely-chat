@@ -33,6 +33,7 @@ class FormContainer extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             <input
+              className="message-input"
               type="text"
               value={this.state.value}
               onChange={this.handleChange}
@@ -41,10 +42,18 @@ class FormContainer extends React.Component {
           <input type="submit" value="Submit" />
         </form>
         <div className="actions">
-          <button data-user="user-1" onClick={this.handleClick}>
+          <button
+            className={this.props.currentUser === 'user-1' ? ' active' : ''}
+            data-user="user-1"
+            onClick={this.handleClick}
+          >
             ME
           </button>
-          <button data-user="user-2" onClick={this.handleClick}>
+          <button
+            data-user="user-2"
+            onClick={this.handleClick}
+            className={this.props.currentUser === 'user-2' ? ' active' : ''}
+          >
             My imaginary friend
           </button>
         </div>
@@ -54,7 +63,7 @@ class FormContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return state;
+  return { currentUser: state.currentUser };
 };
 
 export default connect(mapStateToProps, { sendMessage, updateUser })(
