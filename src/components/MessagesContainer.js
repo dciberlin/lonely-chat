@@ -4,13 +4,12 @@ import Message from './Message';
 
 const MessagesContainer = props => {
   const { messages } = props;
-
   const messagesList = messages.map(message => {
     return <Message key={message.timestamp} message={message}></Message>;
   });
 
   return (
-    <div className="messages">
+    <div className="messages-container">
       <h3>Message</h3>
       {messagesList}
     </div>
@@ -18,6 +17,7 @@ const MessagesContainer = props => {
 };
 
 const mapStateToProps = state => {
+  console.log('MY STATE', state);
   return { messages: state.messages };
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { sendMessage } from '../actions';
+import { sendMessage, updateUser } from '../actions';
 import { connect } from 'react-redux';
 
 class FormContainer extends React.Component {
@@ -9,6 +9,12 @@ class FormContainer extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
+    let userId = event.target.dataset.user;
+    this.props.updateUser(userId);
   }
 
   handleChange(event) {
@@ -23,7 +29,7 @@ class FormContainer extends React.Component {
 
   render() {
     return (
-      <div className="form">
+      <div className="form-container">
         <form onSubmit={this.handleSubmit}>
           <label>
             <input
@@ -35,8 +41,12 @@ class FormContainer extends React.Component {
           <input type="submit" value="Submit" />
         </form>
         <div className="actions">
-          <button>ME</button>
-          <button>My imaginary friend</button>
+          <button data-user="user-1" onClick={this.handleClick}>
+            ME
+          </button>
+          <button data-user="user-2" onClick={this.handleClick}>
+            My imaginary friend
+          </button>
         </div>
       </div>
     );
@@ -47,4 +57,6 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps, { sendMessage })(FormContainer);
+export default connect(mapStateToProps, { sendMessage, updateUser })(
+  FormContainer
+);

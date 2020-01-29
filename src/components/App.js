@@ -7,8 +7,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <MessagesContainer></MessagesContainer>
-        <FormContainer></FormContainer>
+        <div className="container">
+          <MessagesContainer></MessagesContainer>
+          <FormContainer></FormContainer>
+        </div>
       </div>
     );
   }
