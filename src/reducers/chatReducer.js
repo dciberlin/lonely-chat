@@ -12,7 +12,6 @@ const chatReducer = (state = initialState, action) => {
     };
 
     state.messages = [...state.messages, newMessage];
-
     return Object.assign({}, state);
   }
 

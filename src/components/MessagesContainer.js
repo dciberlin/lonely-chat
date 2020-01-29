@@ -1,13 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Message from './Message';
 
 const MessagesContainer = props => {
-  return <h3>Message</h3>;
+  const { messages } = props;
+
+  const messagesList = messages.map(message => {
+    return <Message key={message.timestamp} message={message}></Message>;
+  });
+
+  return (
+    <div className="messages">
+      <h3>Message</h3>
+      {messagesList}
+    </div>
+  );
 };
 
 const mapStateToProps = state => {
-  console.log(state);
-  return state;
+  return { messages: state.messages };
 };
 
 export default connect(mapStateToProps)(MessagesContainer);

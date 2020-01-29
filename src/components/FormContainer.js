@@ -16,23 +16,29 @@ class FormContainer extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     this.props.sendMessage(this.state.value);
     this.setState({ value: '' });
-    event.preventDefault();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="form">
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        <div className="actions">
+          <button>ME</button>
+          <button>My imaginary friend</button>
+        </div>
+      </div>
     );
   }
 }
