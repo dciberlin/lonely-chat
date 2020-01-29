@@ -1,10 +1,21 @@
 // INITIAL STATE
 const initialState = {
-  message: 'Hello from other state'
+  messages: []
 };
 
 // REDUCER
 const chatReducer = (state = initialState, action) => {
+  if (action.type === 'SEND_MESSAGE') {
+    const newMessage = {
+      text: action.payload,
+      timestamp: new Date().getTime()
+    };
+
+    state.messages = [...state.messages, newMessage];
+
+    return Object.assign({}, state);
+  }
+
   return state;
 };
 
